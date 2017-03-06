@@ -1,5 +1,6 @@
 let vimsettings = '~/.vim/settings'
 let uname = system("uname -s")
+set clipboard=unnamed
 
 for fpath in split(globpath(vimsettings, '*.vim'), '\n')
 
