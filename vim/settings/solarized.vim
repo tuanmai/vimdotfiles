@@ -68,9 +68,9 @@ if !exists("g:yadr_disable_solarized_enhancements")
   hi! Comment guifg=#52737B
   hi! link htmlLink Include
   hi! CursorLine cterm=NONE gui=NONE
-  hi! Visual ctermbg=233
   hi! Type gui=bold
   hi! EasyMotionTarget ctermfg=100 guifg=#4CE660 gui=bold
+  hi! Visual cterm=NONE ctermbg=22
 
   " Make sure this file loads itself on top of any other color settings
   au VimEnter * so ~/.vim/settings/solarized.vim
