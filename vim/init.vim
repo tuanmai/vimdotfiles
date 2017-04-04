@@ -93,6 +93,20 @@ Plug 'tpope/vim-surround'
 Plug 'frankier/neovim-colors-solarized-truecolor-only'
 " Plug 'lifepillar/vim-solarized8'
 
+" Ruby
+
+Plug 'ecomba/vim-ruby-refactoring'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-rake'
+Plug 'tpope/vim-rvm'
+Plug 'vim-ruby/vim-ruby'
+Plug 'keith/rspec.vim'
+Plug 'skwp/vim-iterm-rspec'
+Plug 'skwp/vim-spec-finder'
+Plug 'ck3g/vim-change-hash-syntax'
+Plug 'tpope/vim-bundler'
+Plug 'airblade/vim-gitgutter'
+
 " auto reload
 autocmd! bufwritepost init.vim source %
 
@@ -116,9 +130,6 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-map <Leader>nt :NERDTreeFind<CR>
-map <Leader>gd :TernDef<CR>
-map <Leader>gs :TernDefSplit<CR>
 map <Leader>gc :Gstatus<CR>
 
 nnoremap <Leader><Leader> <C-^>
@@ -133,15 +144,8 @@ noremap ^ 0
 " ignore case sensitive when searching
 :set ignorecase
 
-nnoremap gA :Ag! <cword><CR>
 nnoremap <Leader><Space> :FZF <CR>
-" nnoremap <Leader>t :FZF <CR>
 
-" let g:move_map_modifier = "C"
-" vmap <C-[> <Plug>MoveBlockUp
-" nmap <C-[> <Plug>MoveLineUp
-" vmap <C-]> <Plug>MoveBlockDown
-" nmap <C-]> <Plug>MoveLineDown
 
 "clear highlight search
 nnoremap <Esc> :noh<CR><Esc>
@@ -181,7 +185,7 @@ let g:jsx_ext_required = 0
 
 " Ctrl-w + e shall enable checking
 " Ctrl-w + f shall toggle mode
-" noremap <C-w>e :SyntasticCheck<CR>
+ noremap <C-w>e :SyntasticCheck<CR>
 " noremap <C-w>f :SyntasticToggleMode<CR>
 
 nnoremap <F3> :NumbersToggle<CR>
@@ -327,3 +331,29 @@ let g:EasyMotion_smartcase = 1
 map / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 nmap <silent> <tab> <Plug>(easymotion-w)
+
+" Make nerdtree look nice
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let g:NERDTreeWinSize = 30
+let NERDTreeMapOpenSplit = 'x'
+let NERDTreeMapOpenVSplit = 'v'
+set splitright
+set splitbelow
+
+let vimsettings = '~/.vim/nvim_settings'
+let uname = system("uname -s")
+set clipboard=unnamed
+
+for fpath in split(globpath(vimsettings, '*.vim'), '\n')
+
+  if (fpath == expand(vimsettings) . "/yadr-keymap-mac.vim") && uname[:4] ==? "linux"
+    continue " skip mac mappings for linux
+  endif
+
+  if (fpath == expand(vimsettings) . "/yadr-keymap-linux.vim") && uname[:4] !=? "linux"
+    continue " skip linux mappings for mac
+  endif
+
+  exe 'source' fpath
+endfor
