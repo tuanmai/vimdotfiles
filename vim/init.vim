@@ -106,6 +106,7 @@ Plug 'skwp/vim-spec-finder'
 Plug 'ck3g/vim-change-hash-syntax'
 Plug 'tpope/vim-bundler'
 Plug 'airblade/vim-gitgutter'
+Plug 'flowtype/vim-flow'
 
 " auto reload
 autocmd! bufwritepost init.vim source %
