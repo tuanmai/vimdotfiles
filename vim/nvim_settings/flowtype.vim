@@ -20,10 +20,6 @@ if findfile('.flowconfig', '.;') !=# ''
         \ 'cwd': '%:p:h'
         \ }
   let g:neomake_javascript_flow_maker = g:flow_maker
-
-  if g:flow_path != 'flow not found'
-    let g:neomake_javascript_enabled_makers = g:neomake_javascript_enabled_makers + [ 'flow']
-  endif
 endif
 
 " This is kinda useful to prevent Neomake from unnecessary runs
