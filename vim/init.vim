@@ -40,8 +40,6 @@ Plug 'thinca/vim-textobj-function-javascript'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'neomake/neomake'
 
-Plug 'flowtype/vim-flow'
-
 Plug 'vim-scripts/git-time-lapse'
 
 "Comment out stuffs
@@ -106,7 +104,6 @@ Plug 'skwp/vim-spec-finder'
 Plug 'ck3g/vim-change-hash-syntax'
 Plug 'tpope/vim-bundler'
 Plug 'airblade/vim-gitgutter'
-Plug 'flowtype/vim-flow'
 
 " auto reload
 autocmd! bufwritepost init.vim source %
@@ -245,17 +242,6 @@ set number
 
 :imap jk <Esc>
 
-" Tries to find Flow's binary locally, fallback to globally installed
-if executable($PWD .'/node_modules/.bin/flow')
-  let s:flow_path = $PWD .'/node_modules/.bin/flow'
-else
-  let s:flow_path = 'flow'
-endif
-
-" disable facebook flow check and delegate it to neomake
-let g:flow#enable = 1
-let g:flow#autoclose = 1
-
 " open quickfix when there's error
 let g:neomake_open_list = 1
 
@@ -266,28 +252,10 @@ else
   let s:eslint_path = 'eslint'
 endif
 
-" " Custom maker that uses `flow-vim-quickfix` to improve the output
-" let s:flow_maker = {
-"       \ 'exec': s:flow_path.' --json --strip-root | flow-vim-quickfix',
-"       \ 'errorformat': '%E%f:%l:%c\,%n: %m',
-"       \ 'cwd': '%:p:h'
-"       \ }
-" " Same thing as above but this time to pass in the maker configuration
-" let g:neomake_javascript_flow_maker = s:flow_maker
-" let g:neomake_jsx_flow_maker = s:flow_maker
-" let g:neomake_javascript_flow_exe = s:flow_path
-" let g:neomake_logfile = '/Users/khanghoang/.config/nvim/neomake.log'
-
 let s:eslint_maker = {
       \ 'args': [' --no-color', '--format', 'compact', '--quiet'],
       \ 'errorformat': '%f: line %l\, col %c\, %m',
       \ }
-
-let s:neomake_makers = ['eslint']
-
-" I have to specify two makers because Neomake won't recognize `javascript.jsx`
-let g:neomake_javascript_enabled_makers = s:neomake_makers
-let g:neomake_jsx_enabled_makers = s:neomake_makers
 
 " eslint maker
 let g:neomake_javascript_eslint_maker = s:eslint_maker
