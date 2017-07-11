@@ -105,6 +105,12 @@ Plug 'ck3g/vim-change-hash-syntax'
 Plug 'tpope/vim-bundler'
 Plug 'airblade/vim-gitgutter'
 
+" Prettier
+Plug 'sbdchd/neoformat'
+" neo format for prettier
+let g:neoformat_enabled_javascript = ['prettier']
+autocmd FileType javascript setlocal formatprg=prettier\ --stdin\ --parser\ flow\ --single-quote\ --trailing-comma\ es5
+let g:neoformat_try_formatprg = 1
 " auto reload
 autocmd! bufwritepost init.vim source %
 
