@@ -27,7 +27,7 @@ Plug 'majutsushi/tagbar'
 Plug 'szw/vim-tags'
 Plug 'airblade/vim-gitgutter'
 
-Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Shougo/neosnippet-snippets'
 " Plug 'Shougo/neocomplete.vim'
 Plug 'Shougo/neosnippet.vim'
@@ -107,6 +107,9 @@ Plug 'airblade/vim-gitgutter'
 
 " Prettier
 Plug 'sbdchd/neoformat'
+
+" Run test
+Plug 'janko-m/vim-test'
 " neo format for prettier
 let g:neoformat_enabled_javascript = ['prettier']
 autocmd FileType javascript setlocal formatprg=prettier\ --stdin\ --parser\ flow\ --single-quote\ --trailing-comma\ es5
