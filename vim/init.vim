@@ -21,7 +21,6 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'vim-airline/vim-airline'
 Plug 'itchyny/lightline.vim'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'tpope/vim-fugitive'
 Plug 'wellle/targets.vim'
 Plug 'majutsushi/tagbar'
 Plug 'szw/vim-tags'
@@ -304,11 +303,6 @@ if has('conceal')
 endif
 
 " Plug 'matze/vim-move'
-let g:EasyMotion_do_mapping = 0
-let g:EasyMotion_smartcase = 1
-map / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
-nmap <silent> <tab> <Plug>(easymotion-w)
 
 " Make nerdtree look nice
 let NERDTreeMinimalUI = 1
