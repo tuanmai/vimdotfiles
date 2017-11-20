@@ -27,9 +27,7 @@ Plug 'szw/vim-tags'
 Plug 'airblade/vim-gitgutter'
 
 " Plug 'ctrlpvim/ctrlp.vim'
-Plug 'Shougo/neosnippet-snippets'
-" Plug 'Shougo/neocomplete.vim'
-Plug 'Shougo/neosnippet.vim'
+
 Plug 'skwp/vim-html-escape'
 Plug 'justinmk/vim-sneak'
 Plug 'honza/vim-snippets'
@@ -68,7 +66,10 @@ Plug 'plasticboy/vim-markdown'
 Plug 'whatyouhide/vim-lengthmatters'
 
 " ES2015 code snippets (Optional)
+Plug 'carlitux/deoplete-ternjs'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
 Plug 'epilande/vim-es2015-snippets'
 
 " React code snippets
@@ -78,11 +79,6 @@ Plug 'epilande/vim-react-snippets'
 Plug 'SirVer/ultisnips'
 Plug 'kana/vim-submode'
 
-function! DoRemote(arg)
-  UpdateRemotePlugins
-endfunction
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
-Plug 'carlitux/deoplete-ternjs'
 
 Plug 'tpope/vim-surround'
 
@@ -109,6 +105,8 @@ Plug 'sbdchd/neoformat'
 
 " Run test
 Plug 'janko-m/vim-test'
+Plug 'Galooshi/vim-import-js'
+Plug 'bbatsov/rubocop'
 " neo format for prettier
 let g:neoformat_enabled_javascript = ['prettier']
 autocmd FileType javascript setlocal formatprg=prettier\ --stdin\ --parser\ flow\ --single-quote\ --trailing-comma\ es5
@@ -156,22 +154,35 @@ nnoremap <Leader><Space> :FZF <CR>
 "clear highlight search
 nnoremap <Esc> :noh<CR><Esc>
 
+" deoplete
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_ignore_case = 1
 let g:deoplete#enable_smart_case = 1
 let g:deoplete#enable_camel_case = 1
 let g:deoplete#disable_auto_complete = 0
-
-" <TAB>: completion.
-" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" SuperTab like snippets behavior.
-imap <expr><TAB>
- \ pumvisible() ? "\<C-n>" :
- \ neosnippet#expandable_or_jumpable() ?
- \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" neosnippet
+        
+let g:neosnippet#enable_completed_snippet = 1
+" Plugin key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
 
 let g:neoterm_position = 'horizontal'
 let g:neoterm_automap_keys = ',tt'
@@ -271,6 +282,8 @@ let g:neomake_jsx_eslint_maker = s:eslint_maker
 
 " path to bin exec
 let g:neomake_javascript_eslint_exe = s:eslint_path
+
+let g:neomake_ruby_rubocop_maker = s:eslint_maker
 
 " Trigger linter whenever saving/reading a file
 augroup NeomakeLinter
