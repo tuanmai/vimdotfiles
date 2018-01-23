@@ -106,7 +106,7 @@ Plug 'sbdchd/neoformat'
 " Run test
 Plug 'janko-m/vim-test'
 Plug 'Galooshi/vim-import-js'
-Plug 'bbatsov/rubocop'
+" Plug 'bbatsov/rubocop'
 " neo format for prettier
 let g:neoformat_enabled_javascript = ['prettier']
 autocmd FileType javascript setlocal formatprg=prettier\ --stdin\ --parser\ flow\ --single-quote\ --trailing-comma\ es5
@@ -262,7 +262,8 @@ set number
 :imap jk <Esc>
 
 " open quickfix when there's error
-let g:neomake_open_list = 1
+" set default screen is current screen
+let g:neomake_open_list = 2
 
 " Tries to find eslint's binary locally, fallback to globally installed
 if executable($PWD .'/node_modules/eslint/bin/eslint.js')
