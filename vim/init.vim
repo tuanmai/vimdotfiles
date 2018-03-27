@@ -68,6 +68,7 @@ Plug 'whatyouhide/vim-lengthmatters'
 " ES2015 code snippets (Optional)
 Plug 'carlitux/deoplete-ternjs'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'wokalski/autocomplete-flow'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'epilande/vim-es2015-snippets'
