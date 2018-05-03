@@ -101,6 +101,12 @@ Plug 'ck3g/vim-change-hash-syntax'
 Plug 'tpope/vim-bundler'
 Plug 'airblade/vim-gitgutter'
 
+" Flow
+" Plug 'flowtype/vim-flow', {
+"       \ 'autoload': {
+"       \     'filetypes': 'javascript'
+"       \ }}
+
 " Prettier
 Plug 'sbdchd/neoformat'
 
@@ -163,7 +169,7 @@ let g:deoplete#enable_camel_case = 1
 let g:deoplete#disable_auto_complete = 0
 " neosnippet
         
-let g:neosnippet#enable_completed_snippet = 1
+" let g:neosnippet#enable_completed_snippet = 1
 " Plugin key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -235,6 +241,9 @@ set nofoldenable
 set foldlevel=2
 let javaScript_fold=1
 
+" set undo
+set hidden
+
 " Font
 " https://medium.com/@docodemore/an-alternative-to-operator-mono-font-5e5d040e1c7e#.z15iviagh
 let g:Guifont="Operator Mono:h14"
@@ -284,7 +293,7 @@ let g:neomake_jsx_eslint_maker = s:eslint_maker
 " path to bin exec
 let g:neomake_javascript_eslint_exe = s:eslint_path
 
-let g:neomake_ruby_rubocop_maker = s:eslint_maker
+" let g:neomake_ruby_rubocop_maker = s:eslint_maker
 
 " Trigger linter whenever saving/reading a file
 augroup NeomakeLinter
@@ -343,3 +352,12 @@ for fpath in split(globpath(vimsettings, '*.vim'), '\n')
 
   exe 'source' fpath
 endfor
+
+" Font
+hi htmlArg gui=italic
+hi Comment gui=italic
+hi Type    gui=italic
+hi htmlArg cterm=italic
+hi Comment cterm=italic
+hi Type    cterm=italic
+
