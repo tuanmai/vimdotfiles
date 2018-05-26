@@ -113,7 +113,7 @@ Plug 'sbdchd/neoformat'
 " Run test
 Plug 'janko-m/vim-test'
 Plug 'Galooshi/vim-import-js'
-Plug 'bbatsov/rubocop'
+" Plug 'bbatsov/rubocop'
 " neo format for prettier
 let g:neoformat_enabled_javascript = ['prettier']
 autocmd FileType javascript setlocal formatprg=prettier\ --stdin\ --parser\ flow\ --single-quote\ --trailing-comma\ es5
