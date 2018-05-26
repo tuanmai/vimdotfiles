@@ -361,3 +361,5 @@ hi htmlArg cterm=italic
 hi Comment cterm=italic
 hi Type    cterm=italic
 
+
+set relativenumber
