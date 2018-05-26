@@ -353,6 +353,9 @@ for fpath in split(globpath(vimsettings, '*.vim'), '\n')
   exe 'source' fpath
 endfor
 
+" Map reverse search to /
+noremap \ ,
+
 " Font
 hi htmlArg gui=italic
 hi Comment gui=italic
