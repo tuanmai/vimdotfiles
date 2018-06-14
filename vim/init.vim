@@ -107,22 +107,27 @@ Plug 'airblade/vim-gitgutter'
 "       \     'filetypes': 'javascript'
 "       \ }}
 
-" Prettier
 Plug 'sbdchd/neoformat'
 
 " Run test
 Plug 'janko-m/vim-test'
 Plug 'Galooshi/vim-import-js'
 " Plug 'bbatsov/rubocop'
-" neo format for prettier
-let g:neoformat_enabled_javascript = ['prettier']
-autocmd FileType javascript setlocal formatprg=prettier\ --stdin\ --parser\ flow\ --single-quote\ --trailing-comma\ es5
-let g:neoformat_try_formatprg = 1
-" auto reload
-autocmd! bufwritepost init.vim source %
 
 
 call plug#end()
+
+" Prettier
+" neo format for prettier
+let g:neoformat_enabled_javascript = ['prettier']
+let g:neoformat_javascript_prettier = {
+      \ 'exe': './node_modules/.bin/prettier',
+      \ 'args': ['--write', '--config .prettierrc'],
+      \ 'replace': 1
+      \ }
+let g:neoformat_try_formatprg = 1
+" auto reload
+autocmd! bufwritepost init.vim source %
 
 if (has("termguicolors"))
   set termguicolors
