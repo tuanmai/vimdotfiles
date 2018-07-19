@@ -15,7 +15,7 @@ Plug 'pangloss/vim-javascript', { 'for': '*javascript*' }
 Plug 'mxw/vim-jsx', { 'for': '*javascript*' }
 Plug 'ternjs/tern_for_vim', { 'for': '*javascript*' }
 Plug 'leshill/vim-json'
-Plug 'rking/ag.vim'
+" Plug 'rking/ag.vim'
 Plug 'vim-ruby/vim-ruby'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'vim-airline/vim-airline'
