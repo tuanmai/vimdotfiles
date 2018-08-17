@@ -34,6 +34,8 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tomtom/tcomment_vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'itchyny/lightline.vim'
+Plug 'mhinz/vim-startify'
+Plug 'tpope/vim-surround'
 
 " Git
 Plug 'airblade/vim-gitgutter'
@@ -52,10 +54,6 @@ Plug 'ludovicchabant/vim-gutentags'
 call plug#end()
 
 let $MYVIMRC = '$HOME/.config/nvim/init.vim'
-
-
-" auto reload
-autocmd! bufwritepost init.vim source %
 
 
 " Theme
@@ -199,23 +197,20 @@ function! OpenNerdTree()
   endif
 endfunction
 nnoremap <silent> <C-\> :call OpenNerdTree()<CR>
-
-
-"Toggle Tagbar
-nnoremap <silent> <C-[> :TagbarToggle<CR>
-
-
-
+"
+"
+"
  " Edit and source configs
 nnoremap <silent> <leader>ec :e $MYVIMRC<CR>
 nnoremap <silent> <leader>sc :source $MYVIMRC<CR>
 
 
  " Ale configs
+let g:ale_lint_on_text_changed = 'never'
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 let g:ale_open_list = 1
-let g:ale_keep_list_window_open = 1
+" let g:ale_keep_list_window_open = 1
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 1
 let g:ale_javascript_eslint_options = "--quiet"
@@ -228,10 +223,6 @@ let g:ale_fixers = {
 \}
 nmap <silent> <leader>aj :ALENext<CR>
 nmap <silent> <leader>ak :ALEPrevious<CR>
-
-
-" Navigate left to NERDTree
-nmap <bs> :<c-u>TmuxNavigateLeft<cr>
 
 
 " Deoplete configs
@@ -281,3 +272,40 @@ endif
 let g:EasyMotion_keys='asdfjkoweriop'
 nmap ,<ESC> ,,w
 nmap ,<S-ESC> ,,b
+
+
+" Set mouse scroll
+set mouse=a
+
+
+" Vim surround
+" ysiw#   Wrap the token under the cursor in #{}
+" v...s#  Wrap the selection in #{}
+let g:surround_113 = "#{\r}"   " v
+let g:surround_35  = "#{\r}"   " #
+" ,# Surround a word with #{ruby interpolation}
+map ,# ysiw#
+vmap ,# c#{<C-R>"}<ESC>
+" ," Surround a word with "quotes"
+map ," ysiw"
+vmap ," c"<C-R>""<ESC>
+" ,' Surround a word with 'single quotes'
+map ,' ysiw'
+vmap ,' c'<C-R>"'<ESC>
+" ,) or ,( Surround a word with (parens)
+" The difference is in whether a space is put in
+map ,( ysiw(
+map ,) ysiw)
+vmap ,( c( <C-R>" )<ESC>
+vmap ,) c(<C-R>")<ESC>
+" ,[ Surround a word with [brackets]
+map ,] ysiw]
+map ,[ ysiw[
+vmap ,[ c[ <C-R>" ]<ESC>
+vmap ,] c[<C-R>"]<ESC>
+" ,{ Surround a word with {braces}
+map ,} ysiw}
+map ,{ ysiw{
+vmap ,} c{ <C-R>" }<ESC>
+vmap ,{ c{<C-R>"}<ESC>
+map ,` ysiw`
