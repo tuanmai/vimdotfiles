@@ -1,230 +1,111 @@
 " set termguicolors
 call plug#begin()
-
-Plug 'Lokaltog/vim-easymotion'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'scrooloose/nerdcommenter'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-haml'
-Plug 'tpope/vim-bundler'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-endwise'
-Plug 'godlygeek/tabular'
-Plug 'pangloss/vim-javascript', { 'for': '*javascript*' }
-Plug 'mxw/vim-jsx', { 'for': '*javascript*' }
-Plug 'ternjs/tern_for_vim', { 'for': '*javascript*' }
-Plug 'leshill/vim-json'
-" Plug 'rking/ag.vim'
-Plug 'vim-ruby/vim-ruby'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'vim-airline/vim-airline'
-Plug 'itchyny/lightline.vim'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'wellle/targets.vim'
-Plug 'majutsushi/tagbar'
-Plug 'szw/vim-tags'
-Plug 'airblade/vim-gitgutter'
-
-" Plug 'ctrlpvim/ctrlp.vim'
-
-Plug 'skwp/vim-html-escape'
-Plug 'justinmk/vim-sneak'
-Plug 'honza/vim-snippets'
-Plug 'garbas/vim-snipmate'
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'thinca/vim-textobj-function-javascript'
-Plug 'heavenshell/vim-jsdoc'
-Plug 'neomake/neomake'
-
-Plug 'vim-scripts/git-time-lapse'
-
-"Comment out stuffs
-Plug 'tomtom/tcomment_vim'
-
-Plug 'kassio/neoterm'
-
-Plug 'mhinz/vim-startify'
-Plug 'romainl/flattened'
+" UI
+Plug 'jacoborus/tender.vim'
 Plug 'Yggdroot/indentLine'
 
-Plug 'bootleq/vim-textobj-rubysymbol'
-Plug 'coderifous/textobj-word-column.vim'
-Plug 'kana/vim-textobj-datetime'
-Plug 'kana/vim-textobj-entire'
-Plug 'kana/vim-textobj-function'
-Plug 'kana/vim-textobj-user'
-Plug 'lucapette/vim-textobj-underscore'
-Plug 'nelstrom/vim-textobj-rubyblock'
-Plug 'mhartington/oceanic-next'
+" Navigator
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'christoomey/vim-tmux-navigator'
 
-Plug 'jiangmiao/auto-pairs'
-
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
-
-Plug 'whatyouhide/vim-lengthmatters'
-
-" ES2015 code snippets (Optional)
-Plug 'carlitux/deoplete-ternjs'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'wokalski/autocomplete-flow'
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
-Plug 'epilande/vim-es2015-snippets'
-
-" React code snippets
-Plug 'epilande/vim-react-snippets'
-
-" Ultisnips
-Plug 'SirVer/ultisnips'
-Plug 'kana/vim-submode'
-
-
+Plug 'Lokaltog/vim-easymotion'
+" Plug 'tpope/vim-endwise'
+" Plug 'godlygeek/tabular'
+" Plug 'ternjs/tern_for_vim', { 'for': '*javascript*' }
+" Plug 'leshill/vim-json'
+" Plug 'skwp/vim-html-escape'
+" Plug 'justinmk/vim-sneak'
+" Plug 'neomake/neomake'
+" Plug 'mhinz/vim-startify'
+" Plug 'wokalski/autocomplete-flow'
+" Plug 'epilande/vim-es2015-snippets'
+" Plug 'epilande/vim-react-snippets'
+" Plug 'sbdchd/neoformat'
+" Javascript
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'w0rp/ale'
+"
+" Utils
 Plug 'tpope/vim-surround'
+Plug 'jiangmiao/auto-pairs'
+Plug 'tomtom/tcomment_vim'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'itchyny/lightline.vim'
 
-" Plug 'altercation/vim-colors-solarized'
-Plug 'frankier/neovim-colors-solarized-truecolor-only'
-" Plug 'lifepillar/vim-solarized8'
-
-" Ruby
-
-Plug 'ecomba/vim-ruby-refactoring'
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-rake'
-Plug 'tpope/vim-rvm'
-Plug 'vim-ruby/vim-ruby'
-Plug 'keith/rspec.vim'
-Plug 'skwp/vim-iterm-rspec'
-Plug 'skwp/vim-spec-finder'
-Plug 'ck3g/vim-change-hash-syntax'
-Plug 'tpope/vim-bundler'
+" Git
 Plug 'airblade/vim-gitgutter'
-
-" Flow
-" Plug 'flowtype/vim-flow', {
-"       \ 'autoload': {
-"       \     'filetypes': 'javascript'
-"       \ }}
-
-Plug 'sbdchd/neoformat'
-
-" Run test
-Plug 'janko-m/vim-test'
-Plug 'Galooshi/vim-import-js'
-" Plug 'bbatsov/rubocop'
+Plug 'tpope/vim-fugitive'
 
 
+" Autocomplete
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+"Ruby
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-rbenv'
+Plug 'tpope/vim-bundler'
+Plug 'ludovicchabant/vim-gutentags'
 call plug#end()
 
-" Prettier
-" neo format for prettier
-let g:neoformat_enabled_javascript = ['prettier']
-let g:neoformat_javascript_prettier = {
-      \ 'exe': './node_modules/.bin/prettier',
-      \ 'args': ['--write', '--config .prettierrc'],
-      \ 'replace': 1
-      \ }
-let g:neoformat_try_formatprg = 1
+let $MYVIMRC = '$HOME/.config/nvim/init.vim'
+
+
 " auto reload
 autocmd! bufwritepost init.vim source %
 
+
+" Theme
 if (has("termguicolors"))
-  set termguicolors
+ set termguicolors
 endif
-
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 syntax enable
-colorscheme OceanicNext
-set background=dark
-let g:airline_theme='oceanicnext'
+colorscheme tender
 
+
+" Map leader
 let mapleader = ","
+
 
 "Jump
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-
-map <Leader>gc :Gstatus<CR>
-
 nnoremap <Leader><Leader> <C-^>
-
 imap jj <Esc>
 imap jk <Esc>
+
 
 "Remap VIM 0
 noremap 0 ^
 noremap ^ 0
 
+
 " ignore case sensitive when searching
 :set ignorecase
 
-nnoremap <Leader><Space> :FZF <CR>
 
+"FZF configs
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>f :Ag<CR>
+nnoremap <Leader><Space> :FZF <CR>
+nnoremap <silent> <leader>w :Ag! <C-R><C-W><CR>
 
 "clear highlight search
 nnoremap <Esc> :noh<CR><Esc>
-
-" deoplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_ignore_case = 1
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#enable_camel_case = 1
-let g:deoplete#disable_auto_complete = 0
-" neosnippet
-        
-" let g:neosnippet#enable_completed_snippet = 1
-" Plugin key-mappings.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " For conceal markers.
 if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
 
-let g:neoterm_position = 'horizontal'
-let g:neoterm_automap_keys = ',tt'
-" Useful maps
-" hide/close terminal
-nnoremap <Leader>tg :call neoterm#toggle()<cr>
 
-" allow to navigation as normal
-au TermOpen *neoterm* :tnoremap <buffer> <Esc> <C-\><C-n>
-au TermOpen *neoterm* :tnoremap <buffer> <C-h> <C-\><C-n><C-w>h
-au TermOpen *neoterm* :tnoremap <buffer> <C-k> <C-\><C-n><C-w>k
-au TermOpen *neoterm* :tnoremap <buffer> <C-j> <C-\><C-n><C-w>j
-au TermOpen *neoterm* :tnoremap <buffer> <C-l> <C-\><C-n><C-w>l
-
-"jsx highlight
-let g:jsx_ext_required = 0
-
-" Ctrl-w + e shall enable checking
-" Ctrl-w + f shall toggle mode
- noremap <C-w>e :SyntasticCheck<CR>
-" noremap <C-w>f :SyntasticToggleMode<CR>
-
-nnoremap <F3> :NumbersToggle<CR>
-
-" Enable tmux navigation Ctrl+H
-nmap <bs> :<c-u>TmuxNavigateLeft<cr>
-
-let g:neosnippet#enable_snipmate_compatibility = 1
-
-"Indention
+"indention
 set nocompatible
 set smartindent
 set autoindent
@@ -234,35 +115,30 @@ set softtabstop=2
 set nosmarttab
 set formatoptions+=n
 set shiftwidth=2
-" set encoding=utf-8
 set virtualedit=all
 set expandtab
 set smartcase
-
-" Code folding
 set foldmethod=indent
 set foldnestmax=10
 set nofoldenable
 set foldlevel=2
-let javaScript_fold=1
-
-" set undo
+let javascript_fold=1
 set hidden
 
-" Font
+
+" font
 " https://medium.com/@docodemore/an-alternative-to-operator-mono-font-5e5d040e1c7e#.z15iviagh
-let g:Guifont="Operator Mono:h14"
-set t_ZH=^[[3m
-set t_ZR=^[[23m
-hi htmlArg gui=italic
-hi Comment gui=italic
-hi Type    gui=italic
-hi jsModuleKeywords gui=italic
-hi jsModuleOperators gui=italic
-hi jsStorageClass gui=italic
+let g:guifont="operator mono:h14"
+set t_zh=^[[3m
+set t_zr=^[[23m
+hi htmlarg gui=italic
+hi comment gui=italic
+hi type    gui=italic
+hi jsmodulekeywords gui=italic
+hi jsmoduleoperators gui=italic
+hi jsstorageclass gui=italic
 hi jsOperator gui=italic
 hi jsClassKeywords gui=italic
-
 hi htmlArg cterm=italic
 hi Comment cterm=italic
 hi Type    cterm=italic
@@ -270,67 +146,15 @@ hi jsModuleKeywords cterm=italic
 hi jsModuleOperators cterm=italic
 hi jsStorageClass cterm=italic
 hi jsOperator cterm=italic
-
-"UI
+hi Visual ctermbg=152 guibg=#B2DFE0
 set number
-
-:imap jk <Esc>
-
-" open quickfix when there's error
-let g:neomake_open_list = 1
-
-" Tries to find eslint's binary locally, fallback to globally installed
-if executable($PWD .'/node_modules/eslint/bin/eslint.js')
-  let s:eslint_path = $PWD .'/node_modules/eslint/bin/eslint.js'
-else
-  let s:eslint_path = 'eslint'
-endif
-
-let s:eslint_maker = {
-      \ 'args': [' --no-color', '--format', 'compact', '--quiet'],
-      \ 'errorformat': '%f: line %l\, col %c\, %m',
-      \ }
-
-" eslint maker
-let g:neomake_javascript_eslint_maker = s:eslint_maker
-let g:neomake_jsx_eslint_maker = s:eslint_maker
-
-" path to bin exec
-let g:neomake_javascript_eslint_exe = s:eslint_path
-
-" let g:neomake_ruby_rubocop_maker = s:eslint_maker
-
-" Trigger linter whenever saving/reading a file
-augroup NeomakeLinter
-  autocmd!
-  autocmd BufWritePost,BufReadPost * Neomake
-augroup end
-
-noremap <Leader>ne :lNext<CR>
-noremap <Leader>cl :lclose<CR>
-
-" Neo snippets
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
-
-" Git time lapse
-map <leader>gt :call TimeLapse() <cr>
+set lazyredraw
+set relativenumber
+set scrolloff=10
 
 filetype plugin indent on
 
-" For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
 
-" Plug 'matze/vim-move'
 
 " Make nerdtree look nice
 let NERDTreeMinimalUI = 1
@@ -341,33 +165,119 @@ let NERDTreeMapOpenVSplit = 'v'
 set splitright
 set splitbelow
 
-let vimsettings = '~/.vim/nvim_settings'
+
+
+" Set clipboard
 let uname = system("uname -s")
 set clipboard=unnamed
 
-for fpath in split(globpath(vimsettings, '*.vim'), '\n')
-
-  if (fpath == expand(vimsettings) . "/yadr-keymap-mac.vim") && uname[:4] ==? "linux"
-    continue " skip mac mappings for linux
-  endif
-
-  if (fpath == expand(vimsettings) . "/yadr-keymap-linux.vim") && uname[:4] !=? "linux"
-    continue " skip linux mappings for mac
-  endif
-
-  exe 'source' fpath
-endfor
 
 " Map reverse search to /
 noremap \ ,
 
-" Font
-hi htmlArg gui=italic
-hi Comment gui=italic
-hi Type    gui=italic
-hi htmlArg cterm=italic
-hi Comment cterm=italic
-hi Type    cterm=italic
+
+" Multi cursor
+let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_start_key=',mc'
+let g:multi_cursor_next_key='<C-n>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
 
 
-set relativenumber
+" Set line indent color
+let g:indentLine_color_term=240
+
+
+" Toggle NERDTree
+let NERDTreeShowHidden = 1
+function! OpenNerdTree()
+  if &modifiable && strlen(expand('%')) > 0 && !&diff
+    NERDTreeFind
+  else
+    NERDTreeToggle
+  endif
+endfunction
+nnoremap <silent> <C-\> :call OpenNerdTree()<CR>
+
+
+"Toggle Tagbar
+nnoremap <silent> <C-[> :TagbarToggle<CR>
+
+
+
+ " Edit and source configs
+nnoremap <silent> <leader>ec :e $MYVIMRC<CR>
+nnoremap <silent> <leader>sc :source $MYVIMRC<CR>
+
+
+ " Ale configs
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+let g:ale_open_list = 1
+let g:ale_keep_list_window_open = 1
+let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 1
+let g:ale_javascript_eslint_options = "--quiet"
+let g:ale_linters = {
+\   'javascript': [ 'eslint', 'flow' ],
+\   'ruby': []
+\ }
+let g:ale_fixers = {
+\   'javascript': ['prettier', 'eslint', 'importjs'],
+\}
+nmap <silent> <leader>aj :ALENext<CR>
+nmap <silent> <leader>ak :ALEPrevious<CR>
+
+
+" Navigate left to NERDTree
+nmap <bs> :<c-u>TmuxNavigateLeft<cr>
+
+
+" Deoplete configs
+let g:deoplete#enable_at_startup = 1
+
+
+ " LightLine config
+let g:lightline = {
+      \ 'colorscheme': 'tenderplus',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified', 'gutentags' ] ],
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head',
+      \   'gutentags': 'gutentags#statusline',
+      \ },
+      \ }
+let g:lightline.tabline = {
+      \ 'left': [ [ 'tabs' ] ],
+      \ 'right': [ [ 'close' ] ]
+      \ }
+
+
+" Refresh statusline after Gutentags background process has ended
+augroup MyGutentagsStatusLineRefresher
+  autocmd!
+  autocmd User GutentagsUpdating call lightline#update()
+  autocmd User GutentagsUpdated call lightline#update()
+augroup END
+
+
+" Convert slashes to backslashes for Windows.
+if has('win32')
+  nmap ,cs :let @*=substitute(expand("%"), "/", "\\", "g")<CR>
+  nmap ,cl :let @*=substitute(expand("%:p"), "/", "\\", "g")<CR>
+
+  " This will copy the path in 8.3 short format, for DOS and Windows 9x
+  nmap ,c8 :let @*=substitute(expand("%:p:8"), "/", "\\", "g")<CR>
+else
+  nmap ,cs :let @*=expand("%")<CR>
+  nmap ,cl :let @*=expand("%:p")<CR>
+endif
+
+
+" Easymotion
+let g:EasyMotion_keys='asdfjkoweriop'
+nmap ,<ESC> ,,w
+nmap ,<S-ESC> ,,b
