@@ -36,14 +36,26 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'itchyny/lightline.vim'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-surround'
+Plug 'floobits/floobits-neovim'
+Plug 'mbbill/undotree'
+Plug 'ap/vim-css-color'
+
+" Integration
 
 " Git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
 
 
 " Autocomplete
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 
 "Ruby
 Plug 'vim-ruby/vim-ruby'
@@ -187,19 +199,6 @@ let g:multi_cursor_quit_key='<Esc>'
 let g:indentLine_color_term=240
 
 
-" Toggle NERDTree
-let NERDTreeShowHidden = 1
-function! OpenNerdTree()
-  if &modifiable && strlen(expand('%')) > 0 && !&diff
-    NERDTreeFind
-  else
-    NERDTreeToggle
-  endif
-endfunction
-nnoremap <silent> <C-\> :call OpenNerdTree()<CR>
-"
-"
-"
  " Edit and source configs
 nnoremap <silent> <leader>ec :e $MYVIMRC<CR>
 nnoremap <silent> <leader>sc :source $MYVIMRC<CR>
@@ -309,3 +308,60 @@ map ,{ ysiw{
 vmap ,} c{ <C-R>" }<ESC>
 vmap ,{ c{<C-R>"}<ESC>
 map ,` ysiw`
+
+" ==== NERD tree
+" Open the project tree and expose current file in the nerdtree with Ctrl-\
+" " calls NERDTreeFind iff NERDTree is active, current window contains a modifiable file, and we're not in vimdiff
+function! OpenNerdTree()
+  if &modifiable && strlen(expand('%')) > 0 && !&diff
+    NERDTreeFind
+  else
+    NERDTreeToggle
+  endif
+endfunction
+nnoremap <silent> <C-\> :call OpenNerdTree()<CR>
+
+" ,q to toggle quickfix window (where you have stuff like Ag)
+" ,oq to open it back up (rare)
+nmap <silent> ,qc :cclose<CR>
+nmap <silent> ,qo :copen<CR>
+
+"Move back and forth through previous and next buffers
+"with ,z and ,x
+nnoremap <silent> ,z :bp<CR>
+nnoremap <silent> ,x :bn<CR>
+
+" Create window splits easier. The default
+" way is Ctrl-w,v and Ctrl-w,s. I remap
+" this to vv and ss
+nnoremap <silent> vv <C-w>v
+nnoremap <silent> ss <C-w>s
+
+" ============================
+" Shortcuts for everyday tasks
+" ============================
+
+" copy current filename into system clipboard - mnemonic: (c)urrent(f)ilename
+" this is helpful to paste someone the path you're looking at
+nnoremap <silent> ,cf :let @* = expand("%:~")<CR>
+nnoremap <silent> ,cr :let @* = expand("%")<CR>
+nnoremap <silent> ,cn :let @* = expand("%:t")<CR>
+
+"Clear current search highlight by double tapping //
+nmap <silent> // :nohlsearch<CR>
+
+"(v)im (c)ommand - execute current line as a vim command
+nmap <silent> ,vc yy:<C-f>p<C-c><CR>
+
+"(v)im (r)eload
+nmap <silent> ,vr :so %<CR>
+
+" Type ,hl to toggle highlighting on/off, and show current value.
+noremap ,hl :set hlsearch! hlsearch?<CR>
+
+
+" RSpec.vim mappings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
