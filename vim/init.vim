@@ -24,7 +24,6 @@ Plug 'Lokaltog/vim-easymotion'
 " Plug 'epilande/vim-react-snippets'
 " Plug 'sbdchd/neoformat'
 " Javascript
-Plug 'pangloss/vim-javascript'
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
@@ -40,7 +39,6 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'itchyny/lightline.vim'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-surround'
-Plug 'floobits/floobits-neovim'
 Plug 'mbbill/undotree'
 Plug 'ap/vim-css-color'
 
