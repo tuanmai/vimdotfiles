@@ -41,6 +41,7 @@ Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-surround'
 Plug 'mbbill/undotree'
 Plug 'ap/vim-css-color'
+Plug 'galooshi/vim-import-js'
 
 " Integration
 
@@ -323,6 +324,7 @@ function! OpenNerdTree()
 endfunction
 nnoremap <silent> <C-\> :call OpenNerdTree()<CR>
 
+
 " ,q to toggle quickfix window (where you have stuff like Ag)
 " ,oq to open it back up (rare)
 nmap <silent> ,qc :cclose<CR>
@@ -332,6 +334,7 @@ nmap <silent> ,qo :copen<CR>
 "with ,z and ,x
 nnoremap <silent> ,z :bp<CR>
 nnoremap <silent> ,x :bn<CR>
+
 
 " Create window splits easier. The default
 " way is Ctrl-w,v and Ctrl-w,s. I remap
