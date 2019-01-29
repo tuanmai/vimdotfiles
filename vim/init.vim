@@ -378,3 +378,5 @@ nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 
 
+"
+let g:fzf_history_dir='~/.local/share/fzf-history'
