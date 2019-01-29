@@ -130,10 +130,10 @@ set shiftwidth=2
 set virtualedit=all
 set expandtab
 set smartcase
-set foldmethod=indent
+set foldmethod=syntax
 set foldnestmax=10
 set nofoldenable
-set foldlevel=2
+" set foldlevel=2
 let javascript_fold=1
 set hidden
 
