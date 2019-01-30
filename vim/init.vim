@@ -66,6 +66,8 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-rbenv'
 Plug 'tpope/vim-bundler'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'Chiel92/vim-autoformat'
+
 call plug#end()
 
 let $MYVIMRC = '$HOME/.config/nvim/init.vim'
@@ -390,12 +392,14 @@ nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
 
 " Tmux vim config
 let g:tmux_navigator_no_mappings = 1
-
 nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 
+
+" Autoformat for ruby
+let g:formatters_ruby = ['rubocop']
 
 "
 let g:fzf_history_dir='~/.local/share/fzf-history'
