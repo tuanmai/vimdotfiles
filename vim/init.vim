@@ -23,14 +23,19 @@ Plug 'Lokaltog/vim-easymotion'
 " Plug 'epilande/vim-es2015-snippets'
 " Plug 'epilande/vim-react-snippets'
 " Plug 'sbdchd/neoformat'
+
 " Javascript
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
+Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'w0rp/ale'
-"
+
+" Reason
+Plug 'reasonml-editor/vim-reason-plus'
+
 " Utils
 Plug 'tpope/vim-surround'
 Plug 'jiangmiao/auto-pairs'
@@ -375,19 +380,13 @@ map <Leader>a :call RunAllSpecs()<CR>
 
 " Language server
 let g:LanguageClient_serverCommands = {
-    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-    \ }
+\   'javascript': [ 'javascript-typescript-stdio' ],
+\   'javascript.jsx': [ 'javascript-typescript-stdio' ],
+\   'reason': ['~/.config/nvim/reason-language-server.exe'],
+\ }
 nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
 nnoremap <leader>lr :call LanguageClient#textDocument_rename()<CR>
-nnoremap <leader>lf :call LanguageClient#textDocument_formatting()<CR>
-nnoremap <leader>lt :call LanguageClient#textDocument_typeDefinition()<CR>
-nnoremap <leader>lx :call LanguageClient#textDocument_references()<CR>
-nnoremap <leader>la :call LanguageClient_workspace_applyEdit()<CR>
-nnoremap <leader>lc :call LanguageClient#textDocument_completion()<CR>
 nnoremap <leader>lh :call LanguageClient#textDocument_hover()<CR>
-nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
-nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
 
 
 " Tmux vim config
@@ -400,6 +399,10 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 
 " Autoformat for ruby
 let g:formatters_ruby = ['rubocop']
+
+" Autoformat reason
+autocmd BufWritePre *.re :call LanguageClient_textDocument_formatting()
+
 
 "
 let g:fzf_history_dir='~/.local/share/fzf-history'
