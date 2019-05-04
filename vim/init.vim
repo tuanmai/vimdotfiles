@@ -115,6 +115,10 @@ nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>f :Ag<CR>
 nnoremap <Leader><Space> :FZF <CR>
 nnoremap <silent> <leader>w :Ag! <C-R><C-W><CR>
+" https://github.com/junegunn/fzf.vim/issues/346#issuecomment-288483704
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
+" https://github.com/junegunn/fzf.vim/issues/413#issuecomment-320197362
+command! -bang -nargs=+ -complete=dir Rag call fzf#vim#ag_raw(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
 "clear highlight search
 nnoremap <Esc> :noh<CR><Esc>
@@ -228,7 +232,7 @@ let g:ale_linters = {
 \   'ruby': []
 \ }
 let g:ale_fixers = {
-\   'javascript': ['prettier', 'eslint', 'importjs'],
+\   'javascript': ['prettier', 'eslint'],
 \}
 nmap <silent> <leader>aj :ALENext<CR>
 nmap <silent> <leader>ak :ALEPrevious<CR>
@@ -380,13 +384,21 @@ map <Leader>a :call RunAllSpecs()<CR>
 
 " Language server
 let g:LanguageClient_serverCommands = {
-\   'javascript': [ 'javascript-typescript-stdio' ],
+\   'ruby': ['solargraph', 'stdio'],
 \   'javascript.jsx': [ 'javascript-typescript-stdio' ],
 \   'reason': ['~/.config/nvim/reason-language-server.exe'],
 \ }
 nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
 nnoremap <leader>lr :call LanguageClient#textDocument_rename()<CR>
 nnoremap <leader>lh :call LanguageClient#textDocument_hover()<CR>
+
+ " Don't send a stop signal to the server when exiting vim.
+" This is optional, but I don't like having to restart Solargraph
+" every time I restart vim.
+let g:LanguageClient_autoStop = 0
+
+" Configure ruby omni-completion to use the language client:
+autocmd FileType ruby setlocal omnifunc=LanguageClient#complete
 
 
 " Tmux vim config
