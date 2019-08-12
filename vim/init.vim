@@ -32,6 +32,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'w0rp/ale'
+Plug 'dunckr/js_alternate.vim'
 
 " Reason
 Plug 'reasonml-editor/vim-reason-plus'
