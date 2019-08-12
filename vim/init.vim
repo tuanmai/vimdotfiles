@@ -390,10 +390,12 @@ map <Leader>a :call RunAllSpecs()<CR>
 " Language server
 let g:LanguageClient_serverCommands = {
 \   'ruby': ['solargraph', 'stdio'],
-\   'javascript.jsx': [ 'javascript-typescript-stdio' ],
+\   'javascript.jsx': [ 'flow', 'lsp'],
+\   'javascript': [ 'flow', 'lsp'],
 \   'reason': ['~/.config/nvim/reason-language-server.exe'],
 \ }
 nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
+nnoremap <leader>la :call LanguageClient#textDocument_declaration()<CR>
 nnoremap <leader>lr :call LanguageClient#textDocument_rename()<CR>
 nnoremap <leader>lh :call LanguageClient#textDocument_hover()<CR>
 
