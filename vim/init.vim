@@ -73,6 +73,11 @@ Plug 'tpope/vim-bundler'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'Chiel92/vim-autoformat'
 
+"Utils
+Plug 'segeljakt/vim-silicon'
+
+
+
 call plug#end()
 
 let $MYVIMRC = '$HOME/.config/nvim/init.vim'
