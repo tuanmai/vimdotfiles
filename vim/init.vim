@@ -11,18 +11,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'Lokaltog/vim-easymotion'
-" Plug 'tpope/vim-endwise'
-" Plug 'godlygeek/tabular'
-" Plug 'ternjs/tern_for_vim', { 'for': '*javascript*' }
-" Plug 'leshill/vim-json'
-" Plug 'skwp/vim-html-escape'
-" Plug 'justinmk/vim-sneak'
-" Plug 'neomake/neomake'
-" Plug 'mhinz/vim-startify'
-" Plug 'wokalski/autocomplete-flow'
-" Plug 'epilande/vim-es2015-snippets'
-" Plug 'epilande/vim-react-snippets'
-" Plug 'sbdchd/neoformat'
 
 " Javascript
 Plug 'autozimu/LanguageClient-neovim', {
@@ -36,6 +24,11 @@ Plug 'dunckr/js_alternate.vim'
 
 " Reason
 Plug 'reasonml-editor/vim-reason-plus'
+
+" Scala
+Plug 'derekwyatt/vim-scala'
+" Configuration for vim-scala
+au BufRead,BufNewFile *.sbt set filetype=scala
 
 " Utils
 Plug 'tpope/vim-surround'
@@ -58,13 +51,7 @@ Plug 'junegunn/gv.vim'
 
 
 " Autocomplete
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 "Ruby
 Plug 'vim-ruby/vim-ruby'
@@ -73,6 +60,10 @@ Plug 'tpope/vim-rbenv'
 Plug 'tpope/vim-bundler'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'Chiel92/vim-autoformat'
+
+" Elixir
+Plug 'elixir-editors/vim-elixir'
+
 
 "Utils
 Plug 'segeljakt/vim-silicon'
@@ -184,8 +175,6 @@ set scrolloff=10
 
 filetype plugin indent on
 
-
-
 " Make nerdtree look nice
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
@@ -194,8 +183,7 @@ let NERDTreeMapOpenSplit = 'x'
 let NERDTreeMapOpenVSplit = 'v'
 set splitright
 set splitbelow
-
-
+"
 
 " Set clipboard
 let uname = system("uname -s")
@@ -286,6 +274,56 @@ else
   nmap ,cl :let @*=expand("%:p")<CR>
 endif
 
+ "========================================================
+" CONFIG COC.nvim
+"========================================================
+" if hidden is not set, TextEdit might fail.
+set hidden
+
+" Some servers have issues with backup files, see #649
+set nobackup
+set nowritebackup
+
+" Better display for messages
+set cmdheight=2
+
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" always show signcolumns
+set signcolumn=yes
+
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+nnoremap <leader>ld :call CocAction('jumpDefinition')<CR>
+nnoremap <leader>lf :call CocAction('format')<CR>
+nnoremap <leader>lh :call CocAction('doHover')<CR>
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+j
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Remap for rename current word
+nnoremap <leader>rn <Plug>(coc-rename)
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" Use `:Fold` to fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
 
 " Easymotion
 let g:EasyMotion_keys='asdfjkoweriop'
@@ -329,9 +367,10 @@ vmap ,} c{ <C-R>" }<ESC>
 vmap ,{ c{<C-R>"}<ESC>
 map ,` ysiw`
 
+
 " ==== NERD tree
 " Open the project tree and expose current file in the nerdtree with Ctrl-\
-" " calls NERDTreeFind iff NERDTree is active, current window contains a modifiable file, and we're not in vimdiff
+" calls NERDTreeFind iff NERDTree is active, current window contains a modifiable file, and we're not in vimdiff
 function! OpenNerdTree()
   if &modifiable && strlen(expand('%')) > 0 && !&diff
     NERDTreeFind
@@ -388,27 +427,6 @@ map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 
-" Language server
-let g:LanguageClient_serverCommands = {
-\   'ruby': ['solargraph', 'stdio'],
-\   'javascript.jsx': [ 'flow', 'lsp'],
-\   'javascript': [ 'flow', 'lsp'],
-\   'reason': ['~/.config/nvim/reason-language-server.exe'],
-\ }
-nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
-nnoremap <leader>la :call LanguageClient#textDocument_declaration()<CR>
-nnoremap <leader>lr :call LanguageClient#textDocument_rename()<CR>
-nnoremap <leader>lh :call LanguageClient#textDocument_hover()<CR>
-
- " Don't send a stop signal to the server when exiting vim.
-" This is optional, but I don't like having to restart Solargraph
-" every time I restart vim.
-let g:LanguageClient_autoStop = 0
-
-" Configure ruby omni-completion to use the language client:
-autocmd FileType ruby setlocal omnifunc=LanguageClient#complete
-
-
 " Tmux vim config
 let g:tmux_navigator_no_mappings = 1
 nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
@@ -422,6 +440,9 @@ let g:formatters_ruby = ['rubocop']
 
 " Autoformat reason
 autocmd BufWritePre *.re :call LanguageClient_textDocument_formatting()
+
+" Json comment highlight
+autocmd FileType json syntax match Comment +\/\/.\+$+
 
 
 "
