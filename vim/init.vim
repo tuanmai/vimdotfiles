@@ -12,11 +12,6 @@ Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'Lokaltog/vim-easymotion'
 
-" Javascript
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'w0rp/ale'
@@ -58,7 +53,6 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-rbenv'
 Plug 'tpope/vim-bundler'
-Plug 'ludovicchabant/vim-gutentags'
 Plug 'Chiel92/vim-autoformat'
 
 " Elixir
@@ -241,25 +235,16 @@ let g:lightline = {
       \ 'colorscheme': 'tenderplus',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified', 'gutentags' ] ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified'] ],
       \ },
       \ 'component_function': {
       \   'gitbranch': 'fugitive#head',
-      \   'gutentags': 'gutentags#statusline',
       \ },
       \ }
 let g:lightline.tabline = {
       \ 'left': [ [ 'tabs' ] ],
       \ 'right': [ [ 'close' ] ]
       \ }
-
-
-" Refresh statusline after Gutentags background process has ended
-augroup MyGutentagsStatusLineRefresher
-  autocmd!
-  autocmd User GutentagsUpdating call lightline#update()
-  autocmd User GutentagsUpdated call lightline#update()
-augroup END
 
 
 " Convert slashes to backslashes for Windows.
@@ -437,9 +422,6 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 
 " Autoformat for ruby
 let g:formatters_ruby = ['rubocop']
-
-" Autoformat reason
-autocmd BufWritePre *.re :call LanguageClient_textDocument_formatting()
 
 " Json comment highlight
 autocmd FileType json syntax match Comment +\/\/.\+$+
