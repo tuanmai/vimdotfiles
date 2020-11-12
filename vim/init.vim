@@ -62,6 +62,13 @@ Plug 'elixir-editors/vim-elixir'
 "Utils
 Plug 'segeljakt/vim-silicon'
 
+"------------ Snippets --------
+" Track the engine.
+Plug 'SirVer/ultisnips'
+" Snippets are separated from the engine. Add this if you want them:
+Plug 'honza/vim-snippets'
+"------------ End Snippets --------
+
 
 
 call plug#end()
@@ -76,6 +83,17 @@ endif
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 syntax enable
 colorscheme tender
+
+"------------ Snippets --------
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+"------------ End Snippets --------
 
 
 " Map leader
